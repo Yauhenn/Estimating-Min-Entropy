@@ -87,7 +87,7 @@ int main() {
 	fout.close();
 	*/
 	int unicSymbols = pow(2, bitsPerSymbol);
-	/*
+	
 	// Most Common Value
 	cout << endl << "Most Common Value" << endl;
 	double minEntropy1 = mostCommonValue(masOfSymbols, countOfSymbols);
@@ -104,19 +104,18 @@ int main() {
 	cout << endl << "Compression" << endl;
 	double minEntropy3 = compression(masOfSymbols, countOfSymbols, unicSymbols);
 	cout << "Entropy: " << minEntropy3 << endl;
-	*/
-	/*
+	
+	
 	//MultiMCW
 	cout << endl << "MultiMCW" << endl;
 	double minEntropy4 = MultiMCW(masOfSymbols, countOfSymbols, unicSymbols);
 	cout << "Entropy: " << minEntropy4 << endl;
-	*/
+	
 
 	//Lag Prediction
 	cout << endl << "Lag Prediction" << endl;
 	double minEntropy5 = lagPrediction(masOfSymbols, countOfSymbols);
 	cout << "Entropy: " << minEntropy5 << endl;
-
 
 	delete[] masOfSymbols;
 
@@ -125,7 +124,6 @@ int main() {
 }
 
 double mostCommonValue(int mas[], int countOfSymbols) {
-	
 	map<int, int> dict;
 	for (int i = 0; i < countOfSymbols; i++)
 		dict[mas[i]]++;
@@ -191,10 +189,7 @@ double collision(int mas[], int countOfSymbols, int unicSymbols) {
 	cout << "lowerBound: " << lowerBound << endl;
 
 	double p = binarySearchForCollision(lowerBound, unicSymbols);
-	cout << "pre-p: " << p << endl;
-	//////тут непонятно
-	cout << -log10(p) / log10(2) << endl;
-	cout << log10(unicSymbols) / log10(2) << endl;
+	cout << "p: " << p << endl;
 
 	if (p > 0 && p < 1) {
 		cout << "norm p" << endl;
@@ -232,7 +227,6 @@ double binarySearchForCollision(double lowerBound, int unicSymbols) {
 		}
 		rightSide = calcRightSideForCollision(p_c, unicSymbols);
 	}
-
 	return p_c;
 }
 
@@ -259,7 +253,6 @@ double F(double q, int k) {
 }
 
 double compression(int mas[], int countOfSymbols, int unicSymbols) {
-
 	int d = 1000;
 	int v = countOfSymbols - d;
 
@@ -337,7 +330,6 @@ double binarySearchForCompression(double lowerBound, int unicSymbols, int countO
 			p += adj;
 		rightSide = calcRightSideForCompression(p, unicSymbols, countOfSymbols, v);
 	}
-
 	return p;
 }
 
@@ -374,7 +366,6 @@ double G(double p, int countOfSymbols, int v) {
 }
 
 double MultiMCW(int mas[], int countOfSymbols, int unicSymbols) {
-	
 	int w[4] = {63, 255, 1023, 4095};
 	int N = countOfSymbols - w[1];
 
@@ -541,7 +532,6 @@ double lagPrediction(int mas[], int countOfSymbols) {
 		scoreboard[i] = 0;
 
 	int winner = 0;
-	//ofstream fout("cppstudio.txt");
 	
 	for (int i = 1; i < countOfSymbols; i++) {
 		for (int d = 0; d < D; d++) {
@@ -552,7 +542,6 @@ double lagPrediction(int mas[], int countOfSymbols) {
 		}
 
 		int prediction = lag[winner];
-		//fout << prediction << " : " << mas[i] << endl;
 
 		if (prediction == mas[i])
 			correct[i - 1] = 1;
@@ -565,7 +554,6 @@ double lagPrediction(int mas[], int countOfSymbols) {
 			}
 		}
 	}
-	//fout.close();
 
 	int C = 0;
 	for (int i = 0; i < N; i++)
