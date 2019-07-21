@@ -1,5 +1,7 @@
 //LAst Tra-la-la
 
+//first bug
+
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
