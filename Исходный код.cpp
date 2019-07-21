@@ -2,6 +2,8 @@
 
 //first bug
 
+//second Fix
+
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
