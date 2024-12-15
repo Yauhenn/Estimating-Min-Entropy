@@ -1,4 +1,4 @@
-//just for checking
+//one more check
 
 #define _CRT_SECURE_NO_WARNINGS
 
